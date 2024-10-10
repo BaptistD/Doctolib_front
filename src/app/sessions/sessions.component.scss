@@ -1,0 +1,29 @@
+.sessions{
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0;
+    justify-content: center ;
+
+    margin-top: 7vh;
+    position: fixed;
+    background-color: #f1f7fe;
+    height: 100%;
+    width: 100%;
+
+
+    .modules {
+        display: center;
+        position :center;
+        background-color: white;
+        border-radius: 8px;
+        height: 40%;
+        width: 30%;
+        
+        margin-top: 1%;
+
+        
+        
+        
+        
+    }
+}
