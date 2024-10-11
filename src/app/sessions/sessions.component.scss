@@ -10,11 +10,208 @@
     background-color: #f1f7fe;
     height: 100%;
     width: 100%;
-
-
     .modules {
         margin: 10vh;
         height: max-content;
         max-width: 608px;
+
+        .block_title{
+            margin-bottom: 15px;
+            margin-top: 15px;
+        }
+
+        .choix{
+            background-color: white;
+            border-radius: 8px;
+        
+            height: 176px;
+            width: 512px;
+        
+            margin-top: 4vh;
+            padding-bottom: 40px;
+            padding-top: 40px;
+            padding-left: 48px;
+            padding-right: 48px;
+        
+            text-align: center;
+       
+            .inscription_button{    
+                background-color: #107aca;
+                color: white;
+        
+                border: none;
+                border-radius: 8px;
+        
+                height: 45px;
+                width: 310px;
+        
+                .button_texte{
+                    text-transform: uppercase;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+            }
+        
+            .connexion_button{
+                background-color: #ffcd4d;
+                color: #192634;
+        
+                border: none;
+                border-radius: 8px;
+                
+                height: 45px;
+                width: 310px;
+        
+                .button_texte{
+                    text-transform: uppercase;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+            }
+        }
+
+
+        .inscription{
+            background-color: white;
+            border-radius: 8px;
+        
+            height: 300px;
+            width: 480px;
+        
+            margin-top: 4vh;
+            padding-bottom: 64px;
+            padding-top: 40px;
+            padding-left: 64px;
+            padding-right: 64px;
+        
+            text-align: left;
+        
+            h3{
+                margin-bottom: 15px;
+                margin-top: 15px;
+            }
+        
+            .previous_button{
+                color: #192634;
+        
+                border: none;
+                border-radius: 8px;
+                
+            }
+        
+            .email_input{
+                margin-top: 15px;
+                margin-bottom: 15px;
+                width: 100%;
+                height: 40px;
+                
+                border-radius: 4px;
+        
+            }
+        
+            .progress{
+                margin-top: 15px;
+                margin-bottom: 15px;
+        
+                width: 100%;
+                
+            }
+        
+            .continue_button{
+                background-color: #107aca;
+                color: white;
+        
+                border: none;
+                border-radius: 8px;
+        
+                padding: 16px;
+                height: 40px;
+                width: 448px;
+        
+                .button_texte{
+                    text-transform: uppercase;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+            }
+        
+        }
+
+        
+        .connexion{
+            background-color: white;
+            border-radius: 8px;
+
+            height: 300px;
+            width: 480px;
+
+            margin-top: 4vh;
+            padding-bottom: 64px;
+            padding-top: 40px;
+            padding-left: 64px;
+            padding-right: 64px;
+
+            text-align: left;
+
+            h3{
+                margin-bottom: 15px;
+                margin-top: 15px;
+            }
+
+            .previous_button{
+                color: #192634;
+
+                border: none;
+                border-radius: 8px;
+                
+            }
+
+            .email_input{
+                margin-top: 15px;
+                margin-bottom: 15px;
+                width: 100%;
+                height: 40px;
+                
+                border-radius: 4px;
+
+            }
+
+            .progress{
+                margin-top: 15px;
+                margin-bottom: 15px;
+
+                width: 100%;
+                
+            }
+
+            .continue_button{
+                background-color: #107aca;
+                color: white;
+
+                border: none;
+                border-radius: 8px;
+
+                padding: 16px;
+                height: 40px;
+                width: 448px;
+
+                .button_texte{
+                    text-transform: uppercase;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }
