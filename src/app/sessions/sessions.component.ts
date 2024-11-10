@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sessions',
@@ -12,8 +13,9 @@ export class SessionsComponent {
   
   public inscriptionForm: FormGroup;
 
-  public inscription_steps: number = 1;
+  public inscription_steps: number = 0;
   public connexion_steps: number = 0;
+  public sexe: string = '';
 
   public progress: number = 0;
 
@@ -30,4 +32,33 @@ export class SessionsComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
+
+  incrementInscriptionStep() {
+    this.inscription_steps++;
+    this.progress++;
+  }
+
+  decrementIncriptionStep() {
+    this.inscription_steps--;
+    this.progress--;
+  }
+
+  incrementConnexionStep() {
+    this.connexion_steps++;
+    this.progress++;
+  }
+
+  decrementConnexionStep() {
+    this.connexion_steps--;
+    this.progress--;
+  }
+
+  sexeFeminin() {
+    this.sexe = 'F';
+  }
+
+  sexeMasculin() {
+    this.sexe = 'M';
+  }
+
 }

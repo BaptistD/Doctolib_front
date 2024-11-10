@@ -6,18 +6,18 @@
 
 <!--------------------------------------- partie initiale --------------------------------------->
         @if ((inscription_steps == 0 ) && (connexion_steps == 0)){
-            <h3 class ="block_title">Inscrivez-vous ou connectez-vous</h3>
+            <h4 class ="block_title">Inscrivez-vous ou connectez-vous</h4>
 
             <div class="choix">
-                <h3>Nouveau sur Doctolib ?</h3>
-                <button class="inscription_button">
-                    <h3 class="button_texte">s'inscrire</h3>
+                <h4>Nouveau sur Doctolib ?</h4>
+                <button class="inscription_button" (click)="incrementInscriptionStep()">
+                    <h4 class="button_texte">s'inscrire</h4>
                 </button>
                 
-                <h3>J'ai déjà un compte Doctolib</h3>
+                <h4>J'ai déjà un compte Doctolib</h4>
                 
-                <button class="connexion_button">
-                    <h3 class="button_texte">se connecter</h3>
+                <button class="connexion_button" (click)="incrementConnexionStep()">
+                    <h4 class="button_texte">se connecter</h4>
                 </button>
             </div>
 
@@ -29,29 +29,97 @@
 
             @if ((inscription_steps == 1 ) && (connexion_steps == 0)){
                 <div class="inscription">
-                    <button class="previous_button">
-    
-                        <h3 class="button_texte" >Etape Précédent</h3>
+                    <button class="previous_button" (click)="decrementIncriptionStep()">
+                        <img src="assets/images/arrow-left.svg" alt="Etape Précédent">
                     </button>
     
-                    <img src="" alt="">
-    
+                    
                     <h3>Saisissez votre adresse mail ou votre numéro de téléphone</h3>
+                    
+                    <img src="assets/images/arrow-left.svg" alt="">
     
-                    <input class="email_input" type="email or number" placeholder="Adresse mail ou numéro de téléphone"/>
+                    <input class="input" type="email or number" placeholder="Adresse mail ou numéro de téléphone"/>
     
                     <progress class="progress" value="30" max="100"></progress>
     
-                    <button class = "continue_button">
-                        <h3 class = "button_texte">Continuer</h3>
+                    <button class = "continue_button" (click)="incrementInscriptionStep()">
+                        <h4 class = "button_texte">Continuer</h4>
                     </button>
                 </div>
             }
 
             @if ((inscription_steps == 2 ) && (connexion_steps == 0)){
+                <div class="inscription">
+                    <button class="previous_button" (click)="decrementIncriptionStep()">
+                        <img src="assets/images/arrow-left.svg" alt="Etape Précédent">
+                    </button>
+    
+                    <img src="assets/images/image-inscription.png" alt="">
+
+                    <h3>Renseignez votre identité</h3>
+
+                    <p>Identité</p>
+
+                    <div class="sexe">
+                        <button class="sexe_button" (click)="sexeFeminin()">Feminin</button>
+                        <button class="sexe_button" (click)="sexeMasculin()">Masculin</button>
+                    </div>
+    
+                    <input class="input" type="name" placeholder="Prénom"/>
+                    
+                    <input class="input" type="name" placeholder="Nom"/>
+    
+                    <p>Date de naissance</p>
+                    <input class="input" type="date" placeholder="Date de naissance"/>
+
+                    <progress class="progress" value="40" max="100"></progress>
+    
+                    <button class = "continue_button" (click)="incrementInscriptionStep()">
+                        <h3 class = "button_texte">Continuer</h3>
+                    </button>
+                </div>
             }
 
             @if ((inscription_steps == 3 ) && (connexion_steps == 0)){
+                <div class="inscription">
+
+                    <button class="previous_button" (click)="decrementIncriptionStep()">
+                        <img src="assets/images/arrow-left.svg" alt="Etape Précédent">
+                    </button>
+                    
+                    <img src="assets/images/image-inscription.png" alt="">
+                    
+                    <h3>Définissez votre mot de passe</h3>
+                    
+                    <input class="input" type="password" placeholder="Mot de passe"/>
+                    
+                    <progress class="progress" value="50" max="100"></progress>
+                    
+                    <button class = "continue_button" (click)="incrementInscriptionStep()">
+                        <h3 class = "button_texte">Continuer</h3>
+                    </button>
+                </div>
+            }
+
+            @if ((inscription_steps == 4 ) && (connexion_steps == 0)){
+                <div class="inscription">
+
+                    <button class="previous_button" (click)="decrementIncriptionStep()">
+                        <img src="assets/images/arrow-left.svg" alt="Etape Précédent">
+                    </button>
+                    
+                    <img src="assets/images/image-inscription.png" alt="">
+                    
+                    <h3>Saisissez votre numéro de téléphone</h3>
+                    
+                    <input class="input" type="number" placeholder="Numéro de téléphone"/>
+                    
+                    <progress class="progress" value="60" max="100"></progress>
+                    
+                    <button class = "continue_button" (click)="incrementInscriptionStep()">
+                        <h3 class = "button_texte">Continuer</h3>
+                    </button>
+                </div>
             }
         }
 
@@ -61,11 +129,10 @@
 
             @if ((inscription_steps == 0 ) && (connexion_steps == 1)){
                 <div class="connexion">
-                    <button class="previous_button">
-                        <h3 class="button_texte">Etape Précédent</h3>
+                    <button class="previous_button" (click)="decrementIncriptionStep()">
+                        <img src="/src/app/sessions/asset/fleche_gauche.png" alt="Etape Précédent">
                     </button>
-
-                    <img src="" alt="">
+                    
 
                     <h3>Saisissez votre adresse mail ou votre numéro de téléphone</h3>
 
@@ -73,13 +140,14 @@
 
                     <progress class="progress" value="70" max="100"></progress>
 
-                    <button class = "continue_button">
+                    <button class = "continue_button" (click)="incrementConnexionStep()">
                         <h3 class = "button_texte">Continuer</h3>
                     </button>
                 </div>
             }
 
             @if ((inscription_steps == 0 ) && (connexion_steps == 2)){
+                
             }
         }
 
