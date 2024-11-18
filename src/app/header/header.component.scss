@@ -30,7 +30,33 @@
             color: white;
             margin-right: 1%;
             margin-left: 1%;
-            border-radius: 10%;
+            border-radius: 5%;
+        }
+    }
+
+    .help_popup_content {
+        position: absolute;
+        top: 10vh;
+        right: 5%;
+        width: 200px;
+        background-color: white;
+        color: black;
+        border: 1px solid #107ac9;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    
+        p {
+            margin: 0;
+            padding-bottom: 10px;
+        }
+    
+        button {
+            background-color: #107ac9;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
         }
     }
 }

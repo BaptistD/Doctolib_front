@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sessions',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './sessions.component.html',
   styleUrl: './sessions.component.scss'
 })
@@ -33,24 +34,33 @@ export class SessionsComponent {
     });
   }
 
-  incrementInscriptionStep() {
-    this.inscription_steps++;
-    this.progress++;
+  incrementInscriptionStep(increment = 1) {
+    this.inscription_steps = this.inscription_steps + increment;
+    this.progress = this.progress + increment;
   }
 
-  decrementIncriptionStep() {
-    this.inscription_steps--;
-    this.progress--;
+  decrementIncriptionStep(increment = 1) {
+    this.inscription_steps = this.inscription_steps - increment;
+    this.progress = this.progress - increment;
   }
 
-  incrementConnexionStep() {
-    this.connexion_steps++;
-    this.progress++;
+  incrementConnexionStep(increment = 1) {
+    this.connexion_steps = this.connexion_steps + increment;
+    this.progress = this.progress + increment;
   }
 
-  decrementConnexionStep() {
-    this.connexion_steps--;
-    this.progress--;
+  decrementConnexionStep(increment = 1) {
+    this.connexion_steps = this.connexion_steps - increment;
+    this.progress = this.progress - increment;
+  }
+
+  isEmailInvalid() {
+    const emailControl = this.inscriptionForm.get('email');
+    return emailControl?.invalid && emailControl?.touched;
+  }
+
+  clearEmailInput() {
+    this.inscriptionForm.get('email')?.setValue(''); // Efface la valeur de l'input
   }
 
   sexeFeminin() {
@@ -60,5 +70,7 @@ export class SessionsComponent {
   sexeMasculin() {
     this.sexe = 'M';
   }
+
+
 
 }

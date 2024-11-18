@@ -30,6 +30,7 @@
             border-radius: 4px;
         }
 
+        
 
         .choix{
             background-color: white;
@@ -45,6 +46,12 @@
             padding-right: 48px;
         
             text-align: center;
+
+            .button_texte{
+                text-transform: uppercase;
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
        
             .inscription_button{    
                 background-color: #107aca;
@@ -58,9 +65,7 @@
 
                 margin: 15px;
         
-                .button_texte{
-                    text-transform: uppercase;
-                }
+                
             }
         
             .connexion_button{
@@ -75,15 +80,142 @@
 
                 margin: 15px;
         
-                .button_texte{
-                    text-transform: uppercase;
-                    margin-top: 0px;
-                    margin-bottom: 0px;
-                }
+                
             }
         }
 
+        .previous_button{
 
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+
+            background-color: white;
+            color: #192634;
+    
+            border: none;
+            border-radius: 8px;
+            height: 24px;
+            width: 138px;
+
+            margin-bottom: 24px;
+
+            text-transform: bold;
+            font-weight: 700;
+            
+        }
+
+        .pictogram_container{
+            border-radius: 5px;
+            height: 32px;
+            width: 32px;
+            background-color: #e7f4fd;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .progress{
+            margin-top: 15px;
+            margin-bottom: 15px;
+    
+            width: 100%;
+            height: 6px;
+        }
+
+        .input_with_pictogram {
+            display: flex; /* Flexbox pour aligner l'input et le pictogramme */
+            align-items: center; /* Centre verticalement */
+            border: 2px solid #d9d9d9; /* Bordure grise par défaut */
+            border-radius: 8px; /* Coins arrondis */
+            width: 480px; /* Largeur du champ */
+            height: 40px;
+            
+            // padding: 4px 8px; 
+            margin-top: 16px;
+          }
+          
+          .input_with_pictogram input {
+            flex: 1; /* Prend tout l'espace disponible */
+            border: none; /* Supprime la bordure de l'input natif */
+            outline: none; /* Supprime le contour bleu au focus */
+            font-size: 14px; /* Taille du texte */
+            color: #333; /* Couleur du texte */
+            background: transparent; /* Fond transparent */
+          }
+          
+          .input_with_pictogram .invalid_pictogram {
+            display: none; /* Caché par défaut */
+            cursor: pointer; /* Curseur clic */
+            color: #ff4d6d; /* Couleur de la croix */
+          }
+          
+          .input_with_pictogram.error {
+            border-color: #ff4d6d; /* Bordure rouge si erreur */
+          }
+          
+          .input_with_pictogram.error .invalid_pictogram {
+            display: block; /* Affiche la croix si erreur */
+          }
+          
+
+        // .input_with_pictogram{
+        //     display: flex;
+        //     align-items: center; 
+        //     flex: 1;
+
+        //     border: 8px;
+        //     border-color: black;
+        //     border-radius: 8px;
+
+        //     height: 40px;
+        //     width: 480px;
+        //     margin: 10px 0;
+        //     margin-top: 16px;
+        //     margin-bottom: 0px;
+        //     width: 100%;
+
+        //     .input{
+        //         border: 10px;
+        //         border-color: white;
+        //         height: 40px;
+        //         width: 400px;
+        //         justify-content: left;
+        //         padding-left: 20px;
+        //         padding-right: 20px;
+        //     }
+        //     .invalid_pictogram{
+        //         justify-content: right;
+        //         background-color: red;
+        //         border-radius: 10px;
+                
+        //     }
+        // }
+
+        .continue_button{
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+
+
+            background-color: #107aca;
+            color: white;
+    
+            border: none;
+            border-radius: 8px;
+    
+            padding: 16px;
+            height: 40px;
+            width: 480px;
+    
+            .button_texte{
+                text-transform: uppercase;
+            }
+        }
+
+        
         .inscription{
             background-color: white;
             border-radius: 8px;
@@ -98,44 +230,7 @@
         
             text-align: left;
         
-        
-            .previous_button{
-                color: #192634;
-        
-                border: none;
-                border-radius: 8px;
-                height: 24px;
-                width: 138px;
-                
-            }
-        
             
-        
-            .progress{
-                margin-top: 15px;
-                margin-bottom: 15px;
-        
-                width: 100%;
-                
-            }
-        
-            .continue_button{
-                background-color: #107aca;
-                color: white;
-        
-                border: none;
-                border-radius: 8px;
-        
-                padding: 16px;
-                height: 40px;
-                width: 448px;
-        
-                .button_texte{
-                    text-transform: uppercase;
-                    margin-top: 0px;
-                    margin-bottom: 0px;
-                }
-            }
         
         }
 
@@ -158,40 +253,6 @@
             h3{
                 margin-bottom: 15px;
                 margin-top: 15px;
-            }
-
-            .previous_button{
-                color: #192634;
-
-                border: none;
-                border-radius: 8px;
-                
-            }
-
-            .progress{
-                margin-top: 15px;
-                margin-bottom: 15px;
-
-                width: 100%;
-                
-            }
-
-            .continue_button{
-                background-color: #107aca;
-                color: white;
-
-                border: none;
-                border-radius: 8px;
-
-                padding: 16px;
-                height: 40px;
-                width: 448px;
-
-                .button_texte{
-                    text-transform: uppercase;
-                    margin-top: 0px;
-                    margin-bottom: 0px;
-                }
             }
 
         }

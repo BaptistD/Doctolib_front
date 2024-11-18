@@ -1,8 +1,6 @@
 <div class="header">
     <div class="title">
-
-    <img src="assets/logo.svg" alt="Docltolib"/>
-
+        <img src="assets/d-doctolib.svg" alt="Doctolib"/>
     </div>
 
     <div class="button">
@@ -10,20 +8,26 @@
             <p>Vous êtes soignant ?</p>
         </button>
 
-
-        <button class="help_popup">
+        <button class="help_popup" (click)="toggleHelpPopup()">
             <p>Centre d'Aide</p>
         </button>
 
         <button class="connection_button">
-            <p>Se connecter</p>
-            <p class = "grey_text">Gérer mes rendez-vous</p>
+            <p style="font-size: 0.8rem;">Se connecter</p>
+            <p class="grey_text" style="font-size: 0.7rem;">Gérer mes RDV</p>
         </button>
     </div>
 
-
-
-
-
+    <!-- Pop-up d'aide avec les liens qui ouvrent dans un nouvel onglet -->
+    <div class="help_popup_content" *ngIf="isHelpPopupVisible">
+        <ul>
+            <li><a href="/help" target="_blank" rel="noopener noreferrer">Utiliser Doctolib sur ordinateur, smartphone ou tablette</a></li>
+            <li><a href="/help" target="_blank" rel="noopener noreferrer">Mot de passe oublié ? / Identifiant(s) oublié(s) ?</a></li>
+            <li><a href="/help" target="_blank" rel="noopener noreferrer">Prendre et confirmer un rendez-vous sur Doctolib</a></li>
+            <li><a href="/help" target="_blank" rel="noopener noreferrer">Ouvrir le Centre d'aide</a></li>
+            
+        </ul>
+        <!--Lorsque tu utilises target="_blank", il est souvent recommandé d'ajouter l'attribut rel="noopener noreferrer" 
+            pour des raisons de sécurité et de performance.-->
+    </div>
 </div>
-
