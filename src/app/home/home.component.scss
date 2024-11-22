@@ -1,46 +1,130 @@
 .home {
     display: flex;
-    flex-direction: column;
-    
-    
-    background-color: #107ac9;
+    flex-direction: line;
 
-    width: 100%;
-    height: 100vh;
     
-    
-
-    .catch_phrase{
-        margin-top: 5%;
-        margin-left: 10%;
-        
-        color: white;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .browser {
-        background-color: white;
-        
-        width: fit-content;
-        
-        margin-left: 10%;
+    .cherche_specialiste{
         display: flex;
-        border-radius: 10%;
+        flex-direction: column;
 
-        .input {
-            margin-right: 1%;
-            margin-left: 1%;
+        height: 472px;
+        width: 100%;
+
+        position: absolute;
+
+        background-image: url("../../assets/ba6eda4b0cc3e6b3632d.webp");
+        background-size:contain; 
+        background-position: right; 
+        background-repeat: no-repeat; 
+
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    
+        background-color: #107ac9;
+
+        .catch_phrase{
+            margin-top: 120px;
+            margin-left: 7%;
+            
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
         }
-        .search_button {
-            margin-right: 1%;
-            margin-left: 1%;
-            background-color: #3800a1;
+
+        .browser {
+            display: flex;
+            flex-direction:row;
+            justify-content: center;
+            align-items: center;
+
+            height: max-content;
+            width: max-content;
+            
+            background-color: white;
+
+            border-radius: 80px;
+
+            margin-left: 7%;
+            margin-top: 30px;
+
+
+            .input_with_pictogram_container{
+                .input_with_pictogram {
+                    display: flex; /* Flexbox pour aligner l'input et le pictogramme */
+                    align-items: center; /* Centre verticalement */
+                    border-right: 1px solid #7599bd; /* Bordure grise par défaut */
+                    width: 320px; /* Largeur du champ */
+                    height: 60px;
+                }
+                
+                .input_with_pictogram input {
+                    flex: 1; /* Prend tout l'espace disponible */
+                    border: none; /* Supprime la bordure de l'input natif */
+                    outline: none; /* Supprime le contour bleu au focus */
+                    font-size: 14px; /* Taille du texte */
+                    color: #333; /* Couleur du texte */
+                    background: transparent; /* Fond transparent */
+                }
+
+                .input_with_pictogram2 {
+                    display: flex; /* Flexbox pour aligner l'input et le pictogramme */
+                    align-items: center; /* Centre verticalement */
+                    width: 320px; /* Largeur du champ */
+                    height: 60px;
+                }
+                
+                .input_with_pictogram2 input {
+                    flex: 1; /* Prend tout l'espace disponible */
+                    border: none; /* Supprime la bordure de l'input natif */
+                    outline: none; /* Supprime le contour bleu au focus */
+                    font-size: 14px; /* Taille du texte */
+                    color: #333; /* Couleur du texte */
+                    background: transparent; /* Fond transparent */
+                }
+
+                .pictogram{
+                    margin-right: 10px;
+                    margin-left: 10px;
+                }
+            }
+
+            .shearch_button_container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                .search_button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+    
+                    margin-right: 3%;
+                    
+                    background-color: #00264C;
+                    
+                    height: 50px;
+                    width: 140px;
+    
+                    color: white;
+    
+                    border: none;
+                    border-top-right-radius: 100px;
+                    border-bottom-right-radius: 100px;
+    
+                    font-size: 14px;
+                    text-transform: bold;
+                    font-weight: 700;
+    
+                    .search_text {
+                        margin-left: 10px;
+                    }
+
+                    .picto {
+                        margin-right: 10px;
+                        margin-left: 10px;
+                    }
+                }
+
+            }
         }
-    }
-
-    .content_image{
-        margin-right: 0%;
-
-
     }
 }

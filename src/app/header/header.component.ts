@@ -1,6 +1,6 @@
 import { Component, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import nécessaire pour *ngIf
-// import { RouterModule } from '@angular/router'; // Import pour routerLink
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common'; // Import nécessaire pour *ngIf
 export class HeaderComponent {
   isHelpPopupVisible = false;
 
-  constructor(private eRef: ElementRef) {}
+  constructor(private eRef: ElementRef, private router: Router,) {}
 
   toggleHelpPopup() {
     this.isHelpPopupVisible = !this.isHelpPopupVisible;
@@ -29,4 +29,17 @@ export class HeaderComponent {
       this.isHelpPopupVisible = false;
     }
   }
+
+  goToHome() {
+    this.router.navigate(['/']);
+  }
+
+  goToSessions() {
+    this.router.navigate(['/sessions']);
+  }
+
+  goToProfessionnals() {
+    window.location.href = 'https://info.doctolib.fr/?origin=home-header&utm_button=header&utm_content-group=patient_account&utm_website=doctolib_patients';
+}
+
 }
