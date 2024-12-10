@@ -1,23 +1,129 @@
 .help-page-container {
   max-width: 100%;
-  margin: 0;
   font-family: Arial, sans-serif;
 }
 
 .help-header {
+  // position: fixed; /* Le fixe en haut de la fenêtre */
+  // top: 0; /* Positionnement à 0 depuis le haut */
+  // left: 0; /* S'assure qu'il commence à gauche */
+  // width: 100%; /* Occupe toute la largeur */
+  // z-index: 9999; /* Superpose cet élément à tout autre */
   text-align: center;
   background-color: #107ac9;
   color: white;
 
+  padding-bottom: 40px;
+  
+
   h1 {
     
-    padding: 7rem;
-    font-size: 2.8rem;
+    padding-top: 3rem;
+    padding-bottom: 1.5rem;
+    font-size: 2.5rem;
   }
 
   p {
     font-size: 1.5rem;
+    padding-bottom: 1rem;
   }
+  .browser {
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+
+    height: max-content;
+    //height: 45px;
+    width: max-content;
+    
+    background-color: white;
+
+    border-radius: 80px;
+    margin-left: 700px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    padding-left: 30px;
+
+
+    .input_with_pictogram_container{
+        .input_with_pictogram {
+            display: flex; /* Flexbox pour aligner l'input et le pictogramme */
+            align-items: center; /* Centre verticalement */
+            border-right: 1px solid #7599bd; /* Bordure grise par défaut */
+            width: 400px; /* Largeur du champ */
+            height: 60px;
+        }
+        
+        .input_with_pictogram input {
+            flex: 1; /* Prend tout l'espace disponible */
+            border: none; /* Supprime la bordure de l'input natif */
+            outline: none; /* Supprime le contour bleu au focus */
+            font-size: 16px; /* Taille du texte */
+            color: black; /* Couleur du texte */
+            background: transparent; /* Fond transparent */
+        }
+
+        .input_with_pictogram2 {
+            display: flex; /* Flexbox pour aligner l'input et le pictogramme */
+            align-items: center; /* Centre verticalement */
+            width: 400px; /* Largeur du champ */
+            height: 60px;
+        }
+        
+        .input_with_pictogram2 input {
+            flex: 1; /* Prend tout l'espace disponible */
+            border: none; /* Supprime la bordure de l'input natif */
+            outline: none; /* Supprime le contour bleu au focus */
+            font-size: 14px; /* Taille du texte */
+            color: #333; /* Couleur du texte */
+            background: transparent; /* Fond transparent */
+        }
+
+        .pictogram{
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+    }
+
+    .shearch_button_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .search_button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin-right: 3%;
+            
+            background-color: #00264C;
+            
+            height: 50px;
+            width: 50px;
+
+            color: white;
+
+            border: none;
+            border-radius: 40px;
+
+            font-size: 14px;
+            text-transform: bold;
+            font-weight: 700;
+
+            .search_text {
+                margin-left: 10px;
+            }
+
+            .picto {
+                margin-right: 10px;
+                margin-left: 10px;
+            }
+        }
+
+    }
+}
 }
 
 .help-content {
