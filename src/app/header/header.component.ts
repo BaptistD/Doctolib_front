@@ -1,21 +1,59 @@
 import { Component, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import nécessaire pour *ngIf
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AppComponent } from '../app.component';
+import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  imports: [CommonModule] //, RouterModule] // Ajout de RouterModule
+  imports: [CommonModule  ]
 })
 export class HeaderComponent {
-  isHelpPopupVisible = false;
+  public isHelpPopupVisible = false;
+  public isConnectedPopupVisible = false;
 
-  constructor(private eRef: ElementRef, private router: Router,) {}
+  public isConnected: boolean = false;
+
+
+  public constructor(
+    private eRef: ElementRef, 
+    private router: Router,
+    // private authService: AuthService,
+    // private userService: UserService,
+  ) {}
+
+  // public ngOnInit(): void {
+  //   this.isConnected = this.authService.isAuthenticated();
+
+  //   if (this.isConnected) {
+  //     this.userService.getUser().subscribe();
+  //   }
+  // }
+
 
   toggleHelpPopup() {
     this.isHelpPopupVisible = !this.isHelpPopupVisible;
+  }
+
+  toggleConnectedPopup() {
+    this.isConnectedPopupVisible = !this.isConnectedPopupVisible;
+  }
+
+  public goToProfile(): void {
+    this.router.navigate(['/profile']);
+  }
+
+  public goToAppointments(): void {
+    this.router.navigate(['/appointments']);
+  }
+
+  public disconnect(): void {
+    // this.authService.disconnect();
+    this.isConnected = false;
   }
 
   // Écouteur global pour détecter les clics partout dans le document

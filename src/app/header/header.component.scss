@@ -104,7 +104,7 @@
 
         position: absolute;
         z-index: 10;
-        top: 10vh;
+        top: 8vh;
         right: 5%;
         width: 664px;
         height: 212px;
@@ -132,7 +132,13 @@
         }
 
         .help_link{
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            color: black;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .help_link:hover{
+            color: black;
         }
 
         .help_popup_link{
@@ -141,17 +147,67 @@
             justify-content: left;
             align-items: center;
 
-            color: black;
+            color: #107ACA;
             font-size: 14px;
-            font-weight: 700;
             margin-top: 5px;
 
+            .help_center{
+                color: #107ACA;
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 700;
+            }
+            .help_center:hover{
+                text-decoration: underline;
+
+            }
             .picto{
                 margin-left: 5px;
             }
         }
+    }
+
+    .connected_popup {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        z-index: 10;
+        top: 8vh;
+        right: 5%;
+        width: 230px;
+        height: 100px;
+        background-color: white;
+        color: black;
+        fill:black;
+        border: none;
+        border-radius: 5px;
+
+        .button_connected_popup {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            width: 230px;
+            height: 50px;
+            border-radius: 5px;
+            background-color: transparent;
+            border: none;
+            padding: 10px;
+
+            .picto{
+                padding-right:  5px; 
+            }
+            .main_text{
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+        }
+        .button_connected_popup:hover{
+            background-color: #E7F4FD;
+            color: #4E7FCA;
+            fill:#4E7FCA;
+        
+        }
 
 
     }
-    
 }

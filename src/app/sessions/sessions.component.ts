@@ -12,9 +12,12 @@ import { CommonModule } from '@angular/common';
 export class SessionsComponent {
   
   public inscriptionForm: FormGroup;
+  public connexionForm: FormGroup;
 
-  public inscription_steps: number = 2;
+  public inscription_steps: number = 0;
   public connexion_steps: number = 0;
+
+  public useConditions: boolean = false;
 
   public showPassword: boolean = false;
 
@@ -30,49 +33,81 @@ export class SessionsComponent {
       birthDate: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+
+    this.connexionForm = this.fb.group({
+      phoneNumber: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
   }
 
   // ---------------Step function --------------- 
   incrementInscriptionStep(increment:number) {
-      console.log(this.inscription_steps);
+    console.log(this.inscription_steps);
 
     switch(this.inscription_steps) {
       case 0: 
-      this.inscription_steps = this.inscription_steps + increment;
-      break;
+        this.inscription_steps = this.inscription_steps + increment;
+        break;
+      
       case 1:
         if (this.inscriptionForm.get('email')?.valid && this.inscriptionForm.get('email')?.touched) {
           this.inscription_steps = this.inscription_steps + increment;
         }
         break;
+      
       case 2:
         if (this.inscriptionForm.get('firstName')?.valid && this.inscriptionForm.get('firstName')?.touched 
           && this.inscriptionForm.get('lastName')?.valid && this.inscriptionForm.get('lastName')?.touched 
           && this.isDateValid() === 1 && this.inscriptionForm.get('birthDate')?.touched && this.isSexeValid()){
                 this.inscription_steps = this.inscription_steps + increment;            
         }
-        break
+        break;
+      
       case 3:
         if (this.inscriptionForm.get('password')?.valid && this.inscriptionForm.get('password')?.touched){
           this.inscription_steps = this.inscription_steps + increment;
         }
-        break
+        break;
+      
       case 4:
-        if (this.isPasswordValid() > 0){
+        if (this.inscriptionForm.get('phoneNumber')?.valid && this.inscriptionForm.get('phoneNumber')?.touched){
           this.inscription_steps = this.inscription_steps + increment;
         }
-        break
+        break;
+
+      case 5: 
+        if (this.useConditions){
+          // this.inscription_steps = this.inscription_steps + increment;
+        }
+        break; 
 
     }
   }
-
 
   decrementIncriptionStep(increment = 1) {
     this.inscription_steps = this.inscription_steps - increment;
   }
 
+  // ---------------Connexion function ---------------
   incrementConnexionStep(increment = 1) {
-    this.connexion_steps = this.connexion_steps + increment;
+    console.log(this.connexion_steps);
+    switch(this.connexion_steps) {
+      case 0: 
+        this.connexion_steps = this.connexion_steps + increment;
+        break;
+
+      case 1:
+        if (this.connexionForm.get('email')?.valid && this.connexionForm.get('email')?.touched) {
+          this.connexion_steps = this.connexion_steps + increment;
+        }
+        break;
+      case 2:
+        if (this.connexionForm.get('password')?.valid && this.connexionForm.get('password')?.touched){
+          this.connexion_steps = this.connexion_steps + increment;
+        }
+        break;
+    }
   }
 
   decrementConnexionStep(increment = 1) {
@@ -82,9 +117,14 @@ export class SessionsComponent {
 
   // ---------------Validation function ---------------
 
-  public isValidField(formControlName: string): boolean {
+  public isValidInscriptionField(formControlName: string): boolean {
     
     const field = this.inscriptionForm.get(formControlName);
+    return (field?.valid && field?.touched) ?? false;
+  }
+
+  public isValidConnexionField(formControlName: string): boolean {
+    const field = this.connexionForm.get(formControlName);
     return (field?.valid && field?.touched) ?? false;
   }
 
@@ -132,6 +172,7 @@ export class SessionsComponent {
       return 4;
     } 
   }
+
   
   
   
@@ -167,6 +208,10 @@ export class SessionsComponent {
 
   public togglePassword() {
     this.showPassword = !this.showPassword;
+  }
+
+  public toggleUseConditions() {
+    this.useConditions = !this.useConditions;
   }
 
 }

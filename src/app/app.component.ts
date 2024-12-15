@@ -16,4 +16,6 @@ import { SessionsComponent } from './sessions/sessions.component';
 
 export class AppComponent {
   title = 'projet_doctolib_front';
+
+  public isConnected: boolean = false;
 }
