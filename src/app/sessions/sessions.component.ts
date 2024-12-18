@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { User } from '../types/user.interface';
+import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
+import { SuccessService } from '../services/success.service';
+import { InscriptionSuccess } from '../types/inscriptionSuccess.interface';
+import { catchError, EMPTY, Observable, tap } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sessions',
@@ -17,25 +25,36 @@ export class SessionsComponent {
   public inscription_steps: number = 0;
   public connexion_steps: number = 0;
 
+  public succesInscription: InscriptionSuccess | null = null;
+
   public useConditions: boolean = false;
 
   public showPassword: boolean = false;
 
+  public inscriptionError: Error = new Error();
+
+  public allUsers: User[] = [];
+
   constructor(
+    private userService: UserService,
     private fb: FormBuilder,
+    private successService: SuccessService,
+    private router: Router,
+    private authService : AuthService
   ) {
     this.inscriptionForm = this.fb.group({
-      phoneNumber: ['', Validators.required],
+      phone: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      sexe: ['', Validators.required],
+      sex: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      birthDate: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
 
+    
     this.connexionForm = this.fb.group({
-      phoneNumber: ['', Validators.required],
+      phone: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
@@ -59,7 +78,7 @@ export class SessionsComponent {
       case 2:
         if (this.inscriptionForm.get('firstName')?.valid && this.inscriptionForm.get('firstName')?.touched 
           && this.inscriptionForm.get('lastName')?.valid && this.inscriptionForm.get('lastName')?.touched 
-          && this.isDateValid() === 1 && this.inscriptionForm.get('birthDate')?.touched && this.isSexeValid()){
+          && this.isDateValid() === 1 && this.inscriptionForm.get('dateOfBirth')?.touched && this.issexValid()){
                 this.inscription_steps = this.inscription_steps + increment;            
         }
         break;
@@ -71,14 +90,14 @@ export class SessionsComponent {
         break;
       
       case 4:
-        if (this.inscriptionForm.get('phoneNumber')?.valid && this.inscriptionForm.get('phoneNumber')?.touched){
+        if (this.inscriptionForm.get('phone')?.valid && this.inscriptionForm.get('phone')?.touched){
           this.inscription_steps = this.inscription_steps + increment;
         }
         break;
 
       case 5: 
         if (this.useConditions){
-          // this.inscription_steps = this.inscription_steps + increment;
+          this.inscription()
         }
         break; 
 
@@ -104,7 +123,7 @@ export class SessionsComponent {
         break;
       case 2:
         if (this.connexionForm.get('password')?.valid && this.connexionForm.get('password')?.touched){
-          this.connexion_steps = this.connexion_steps + increment;
+          this.connexion()
         }
         break;
     }
@@ -128,13 +147,13 @@ export class SessionsComponent {
     return (field?.valid && field?.touched) ?? false;
   }
 
-  public isSexeValid(): boolean {
-    const sexeControl = this.inscriptionForm.get('sexe');
-    return sexeControl?.value === "F" || sexeControl?.value === "M";
+  public issexValid(): boolean {
+    const sexControl = this.inscriptionForm.get('sex');
+    return sexControl?.value === "F" || sexControl?.value === "M";
   }
 
   public isDateValid(): number {
-    const dateControl = this.inscriptionForm.get("birthDate");
+    const dateControl = this.inscriptionForm.get("dateOfBirth");
     if (!dateControl || !dateControl.value) {
       return 0; // Si le champ n'est pas défini ou vide, retourner 0
     }
@@ -180,12 +199,12 @@ export class SessionsComponent {
 
   //--------------- Set Input function ---------------
 
-  public setSexeFeminin() {
-    this.inscriptionForm.get('sexe')?.setValue('F');
+  public setsexFeminin() {
+    this.inscriptionForm.get('sex')?.setValue('F');
   }
 
-  public setSexeMasculin() {
-    this.inscriptionForm.get('sexe')?.setValue('M');
+  public setsexMasculin() {
+    this.inscriptionForm.get('sex')?.setValue('M');
   }
 
   // ---------------clear Input function ---------------
@@ -213,5 +232,65 @@ export class SessionsComponent {
   public toggleUseConditions() {
     this.useConditions = !this.useConditions;
   }
+
+  public inscription(): void {
+    this.inscriptionForm.markAllAsTouched();
+    if (this.inscriptionForm.valid) {
+      this.userService
+        .createUser(this.inscriptionForm.value)
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            this.inscriptionError = error.error;
+            return EMPTY;
+          }),
+          tap((res: Partial<User>) => {
+            if (res) {
+              const inscriptionSuccess: InscriptionSuccess = {
+                succes: 'Inscription réussie',
+                name: this.inscriptionForm.value.firstName,
+                email: this.inscriptionForm.value.email,
+              };
+              this.successService.setInscriptionData(inscriptionSuccess);
+              this.connexionForm.setValue({ email: this.inscriptionForm.value.email, password: this.inscriptionForm.value.password });
+              this.inscription_steps = 0;
+              this.connexion_steps = 2;
+            }
+          })
+        )
+        .subscribe();
+    }
+  }
+
+
+  public getUsers$(): Observable<User[]> {
+    return this.userService.getUsers();
+  }
+
+
+  public ngOnInit(): void {
+    this.succesInscription = this.successService.getInscriptionData();
+
+    if (this.succesInscription) {
+      this.connexionForm.get('email')?.setValue(this.succesInscription.email);
+    }
+  }
+
+  public connexion(): void {
+    if (this.connexionForm.valid) {
+      const { email, password } = this.connexionForm.value;
+      this.authService
+        .login(email, password)
+        .pipe(
+          tap((res) => {
+            this.authService.saveToken(res.token.access_token);
+            this.router.navigate(['/home']).then(() => {
+              window.location.reload();
+            });
+          })
+        )
+        .subscribe();
+    }
+  }
+
 
 }

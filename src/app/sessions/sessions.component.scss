@@ -184,7 +184,9 @@
 
         }
 
-
+        .space{
+            height: 15px;
+        }
         
 
         .continue_button{
@@ -209,6 +211,7 @@
         }
         .continue_button:hover{
             background-color: #045FAE;
+            cursor: grab;
         }
         
         .inscription{
@@ -247,7 +250,7 @@
         
             text-align: left;
         
-            .sexe{
+            .sex{
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -257,7 +260,7 @@
 
                 margin-top: 16px;
 
-                .sexe_button{
+                .sex_button{
                     display: flex;
                     justify-content: left;
                     align-items: center;
@@ -362,15 +365,5 @@
                 padding : 5px;
             }
         }
-
-
-
-
-
-
-
-
-
-
     }
 }
